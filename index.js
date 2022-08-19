@@ -21,6 +21,9 @@ app.listen(port, function () {
 });
 
 app.post('/api/fileanalyse',multer().single('upfile'),(req,res)=>{
-  console.log(req.file);
-  res.json({})
+  const resObj={};
+  resObj['name']=req.file.originalname;
+  resObj['type']=req.file.mimetype;
+  resObj['size']=req.file.size;
+  res.json(resObj)
 })
